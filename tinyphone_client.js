@@ -1,8 +1,6 @@
 (function(){
 
-//==============================================================================
-// PRE-LIBRARY-LOAD INIT
-//==============================================================================
+//BEGINNING OF SCRIPT (INIT)
   // Define tinyphone namespace
   tinyphone = {};
   // Set version
@@ -17,10 +15,8 @@
 	tinyphone.phoneNumber = phoneNumber;
 	tinyphone.loadSocketIO();
   }
-//==============================================================================
-// LOAD LIBRARY
-//==============================================================================  
-  // SocketIO loader
+  
+// Load SocketIO
   tinyphone.loadSocketIO = function () {
     var head   = document.getElementsByTagName("head")[0];
     var script = document.createElement("script");
