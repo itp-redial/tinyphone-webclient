@@ -1,7 +1,7 @@
 (function(){
 
 //BEGINNING OF SCRIPT (INIT)
-  // Define tinyphone namespace
+	//set namespace
   tinyphone = {};
   // Set version
   tinyphone.version = "tinyphone.js 0.0.1";
