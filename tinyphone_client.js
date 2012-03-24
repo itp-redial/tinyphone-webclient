@@ -85,6 +85,11 @@ socket.on('hangup', function(msg){
 		callback(caller);
 	}
 });
-socket.on('disconnect', function(){ console.log('disconnected from server'); }) ;
+socket.on('disconnect', function(){ 
+var callback = tinyphone.callback['disconnect'];
+	if (callback){
+		callback();
+	}
+}) ;
 }
 })();
