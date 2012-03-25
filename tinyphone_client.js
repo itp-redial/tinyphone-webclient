@@ -10,6 +10,7 @@
   tinyphone.callback = {};
   
   tinyphone.init = function(host, port, phoneNumber){
+  	phoneNumber = phoneNumber.replace(/[\(\s\)+-]/g,"");
   	tinyphone.socketioLocation = "http://"+host+":"+port;
 	tinyphone.socketioSrc="http://"+host+":"+port+"/socket.io/socket.io.js";
 	tinyphone.phoneNumber = phoneNumber;
