@@ -50,7 +50,18 @@ socket.on('connect', function(){
 	}
 });
 socket.on('new_call', function(msg){
-	var caller = {"id":msg.id, callerNumber:msg.value};
+	var phoneNumbersAndArgs=msg.value.split("|");
+    var arg = [];
+    var phoneNumber = phoneNumbersAndArgs[0];
+	var label = phoneNumber;
+    if (label.length >= 7){
+    	var begin = label.length-7;
+    	label = label.substr(0,begin)+"xxx"+label.substr(begin+3);
+    }
+    for (var i = 1; i < phoneNumbersAndArgs.length; i++){
+    	arg.push(phoneNumbersAndArgs[i]);   
+    }
+	var caller = {"id":msg.id, callerNumber:phoneNumber, callerLabel:label, args:arg};
 	tinyphone.callers[caller.id]=caller;
 	//console.log('received a new call! '+JSON.stringify(caller));
 	var callback = tinyphone.callback['new_call'];

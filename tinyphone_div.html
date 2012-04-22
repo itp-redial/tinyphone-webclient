@@ -2,9 +2,9 @@
 <body>
 <script type="text/javascript" src="tinyphone_client.js"></script>
 <script>
-var phoneNumber = "13605162008";
+var phoneNumber = "1 (360) 555-1212";
 var cr = "<br/>"; //add a line break to each addition to page.
-tinyphone.init("ast1.itp-redial.com",12003,phoneNumber);
+tinyphone.init("yourhost.com",12003,phoneNumber);
 tinyphone.on('connect', function(){
 	var d = document.getElementById("connected");
 	d.innerHTML="connected to server";
@@ -15,7 +15,8 @@ tinyphone.on('new_call', function(caller){
   	var divIdName = caller.id;
   	newdiv.setAttribute('id',divIdName);
   	newdiv.setAttribute('style',"background-color: pink; border: 2px solid red;height: 60; width: 150");
-  	newdiv.innerHTML = 'Caller '+caller.callerNumber+'<div id="key_'+caller.id+'">keypress: ?</div>';
+  	//you could use caller.callerNumber if you don't mind about privacy
+  	newdiv.innerHTML = 'Caller '+caller.callerLabel+'<div id="key_'+caller.id+'">keypress: ?</div>';
   	parent.appendChild(newdiv);
 });
 tinyphone.on('keypress', function(caller){

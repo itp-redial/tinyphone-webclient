@@ -2,14 +2,14 @@
 <body>
 <script type="text/javascript" src="tinyphone_client.js"></script>
 <script>
-var phoneNumber = "13605162008";
+var phoneNumber = "1 (360) 555-1212";
 var cr = "<br/>"; //add a line break to each addition to page.
-tinyphone.init("ast1.itp-redial.com",12003,phoneNumber);
+tinyphone.init("yourhost.com",12003,phoneNumber);
 tinyphone.on('connect', function(){
 	document.write("connected to tinyphone with phone number "+tinyphone.phoneNumber+cr);
 });
 tinyphone.on('new_call', function(caller){
-	document.write("new caller "+caller.callerNumber+", id "+caller.id+cr);
+	document.write("new caller "+caller.callerNumber+" (label "+caller.callerLabel+"), id "+caller.id+", args ["+caller.args.join(", ")+"]"+cr);
 });
 tinyphone.on('keypress', function(caller){
 	document.write("received keypress '"+caller.keypress+"' from "+caller.callerNumber+cr);
