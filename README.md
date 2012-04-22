@@ -13,7 +13,8 @@ One of the examples, “tinyphone_simple.html“, is posted below. Tinyphone_sim
  - Include tinyphone_client.js in your html page.
  - Initialize tinyphone client with the tinyphone server with server location, port, and phone number that people will call.
  - register listeners for the 4 tinyphone events: new_call, keypress, audio_level, and hangup.  All listeners are optional.  For example, if you don’t care about audio level events, you can leave out that listener.
- <code>
+
+````
     <html>
         <body>
           <script type="text/javascript" src="tinyphone_client.js"></script>
@@ -39,5 +40,6 @@ One of the examples, “tinyphone_simple.html“, is posted below. Tinyphone_sim
           </script>
       </body>
     </html>
-</code>
+````
+
 All other examples included with tinyphone_client.js are expansions on the simple template.
