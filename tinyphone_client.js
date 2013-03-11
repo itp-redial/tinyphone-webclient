@@ -4,7 +4,7 @@
 	//set namespace
   tinyphone = {};
   // Set version
-  tinyphone.version = "tinyphone.js 0.0.1";
+  tinyphone.version = "tinyphone.js 0.0.2";
   tinyphone.callers = {};
   tinyphone.uniqueID = new Date().getTime()+"."+Math.random();
   tinyphone.callback = {};
@@ -67,6 +67,25 @@ socket.on('new_call', function(msg){
 	var callback = tinyphone.callback['new_call'];
 	if (callback){
 		callback(caller);
+	}
+});
+socket.on('sms', function(msg){
+	var phoneNumbersAndArgs=msg.value.split("|");
+    var sms_text = "";
+    var phoneNumber = phoneNumbersAndArgs[0];
+	var label = phoneNumber;
+    if (label.length >= 7){
+    	var begin = label.length-7;
+    	label = label.substr(0,begin)+"xxx"+label.substr(begin+3);
+    }
+    if (phoneNumbersAndArgs.length > 1){
+    	sms_text = decodeURIComponent(phoneNumbersAndArgs[1]);
+    }
+	var sms = {"id":msg.id, callerNumber:phoneNumber, callerLabel:label, message:sms_text};
+	//console.log('received a new call! '+JSON.stringify(caller));
+	var callback = tinyphone.callback['sms'];
+	if (callback){
+		callback(sms);
 	}
 });
 socket.on('keypress', function(msg){ 

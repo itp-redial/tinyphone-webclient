@@ -1,0 +1,33 @@
+<html>
+<body>
+<script type="text/javascript" src="tinyphone_client.js"></script>
+<script>
+var phoneNumber = "1(917)831-4956";
+var cr = "<br/>"; //add a line break to each addition to page.
+tinyphone.init("50.56.193.8",12003,phoneNumber);
+tinyphone.on('connect', function(){
+	var d = document.getElementById("connected");
+	d.innerHTML="connected to server";
+});
+tinyphone.on('sms', function(sms){
+	var msgDiv = document.getElementById('msg_'+sms.callerLabel);
+	if (msgDiv == null){
+	var parent = document.getElementById("sms_list");
+	var newdiv = document.createElement('div');
+  	var divIdName = sms.callerLabel;
+  	newdiv.setAttribute('id',divIdName);
+  	newdiv.setAttribute('style',"background-color: pink; border: 2px solid red;height: 60; width: 500");
+  	newdiv.innerHTML = 'From '+sms.callerLabel+':<div id="msg_'+sms.callerLabel+'">Message: '+sms.message+'</div>';
+  	parent.appendChild(newdiv);
+  	} else {
+  		msgDiv.innerHTML = 'Message: '+sms.message;
+  	}
+});
+</script>
+<h3>
+<div id="phone_number">call <script>document.write(phoneNumber)</script></div>
+</h3>
+<div id="connected">disconnected</div>
+<div id="sms_list"></div>
+</body>
+</html>
