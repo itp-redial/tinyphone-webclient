@@ -11,7 +11,7 @@ The tinyphone client is expecting to connect to the [tinyphone server](https://g
 One of the examples, “tinyphone_simple.html“, is posted below. Tinyphone_simple.html is a good template for your projects. As you can see, there’s 3 basic steps to configuring a tinyphone app.
 
  - Include tinyphone_client.js in your html page.
- - Initialize tinyphone client with the tinyphone server with server location, port, and phone number that people will call.
+ - Initialize tinyphone client with the tinyphone server with server location, port, and phone number that people will call or sms.
  - register listeners for the 4 tinyphone events: new_call, keypress, audio_level, and hangup.  All listeners are optional.  For example, if you don’t care about audio level events, you can leave out that listener.
 
 ````
@@ -39,6 +39,27 @@ One of the examples, “tinyphone_simple.html“, is posted below. Tinyphone_sim
                 });
             </script>
         </body>
+    </html>
+````
+
+Alternatively, you can also receive SMS, assuming that the Tinyphone server is set up to receive them from Twilio.
+````
+    <html>
+    <body>
+    <script type="text/javascript" src="tinyphone_client.js"></script>
+    <script>
+    var phoneNumber = "191785551212";
+    var cr = "<br/>"; //add a line break to each addition to page.
+    tinyphone.init("yourhost.com",12003,phoneNumber);
+    tinyphone.on('connect', function(){
+    document.write("connected to tinyphone with phone number "+tinyphone.phoneNumber+cr);
+    });
+    tinyphone.on('sms', function(sms){
+    	document.write("new caller "+sms.callerNumber+" (label "+sms.callerLabel+"), id "+sms.id+cr);
+    	document.write("message:"+sms.message+cr);
+    });
+    </script>
+    </body>
     </html>
 ````
 
