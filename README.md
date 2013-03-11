@@ -45,7 +45,7 @@ One of the examples, “tinyphone_simple.html“, is posted below. Tinyphone_sim
 All other examples included with tinyphone_client.js are expansions on the simple template.
 
 ####Tinyphone Web Client Events
-You can register for any or all of these events by using **tinyphone.on(...)**.  Use tinyphone_simple.html as a guide.
+You can register for any or all of these events by using **tinyphone.on(...)**.  Use tinyphone_simple.html and tinyphone_simple_sms.html as a guide.
  - **new_call**
   - A new caller object has been created and stored in tinyphone_client, and is passed to app.
   - id: Every call has unique ID.
@@ -62,3 +62,9 @@ You can register for any or all of these events by using **tinyphone.on(...)**. 
   - tinyphone_client has successfully connected to the tinyphone server
  - **disconnect** 
   - tinyphone_client has disconnected from the tinyphone server
+ - **sms** 
+  - tinyphone_client has received an SMS message
+  - id: Every sms has unique ID.
+  - callerNumber: The caller's phone number (callerID).
+  - callerLabel: An obscured version of the caller's phone number, suitable for public display.
+  - message: The SMS message body.
